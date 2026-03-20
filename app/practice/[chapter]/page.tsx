@@ -1,10 +1,15 @@
 import Link from "next/link";
 import PracticePanel from "@/components/PracticePanel";
 import { getQuestionsByChapter } from "@/lib/question-bank";
+import { CHAPTERS } from "@/data/questions";
 
 type Props = {
   params: Promise<{ chapter: string }>;
 };
+
+export function generateStaticParams() {
+  return CHAPTERS.map((chapter) => ({ chapter }));
+}
 
 export default async function ChapterPracticePage({ params }: Props) {
   const { chapter: rawChapter } = await params;
