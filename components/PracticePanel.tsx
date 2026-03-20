@@ -43,8 +43,8 @@ export default function PracticePanel({
 
   if (!question) {
     return (
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-2xl font-bold">{title}</h1>
+      <section className="card">
+        <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
         <p className="mt-4 text-slate-600">当前没有可练习题目。</p>
       </section>
     );
@@ -105,17 +105,17 @@ export default function PracticePanel({
     });
   }
 
-  const orderLabel = mode === "random" ? "随机模式" : `第 ${index + 1} / ${questions.length} 题`;
+  const orderLabel = mode === "random" ? `随机抽题 / 总题数 ${questions.length}` : `第 ${index + 1} / ${questions.length} 题`;
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
-        <div>
-          <h1 className="text-xl font-bold md:text-2xl">{title}</h1>
-          <p className="mt-1 text-sm text-slate-500">{orderLabel}</p>
-        </div>
-        <div className="rounded-full bg-teal-50 px-3 py-1 text-sm font-medium text-teal-700">
-          {getTypeLabel(currentQuestion.type)}
+    <section className="card md:p-6">
+      <div className="mb-5 border-b border-slate-100 pb-4">
+        <h1 className="text-xl font-bold text-slate-900 md:text-2xl">{title}</h1>
+        <p className="mt-1 text-sm text-slate-500">{orderLabel}</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <span className="chip">题型：{getTypeLabel(currentQuestion.type)}</span>
+          <span className="chip">科目：{currentQuestion.subject}</span>
+          <span className="chip">年份：{currentQuestion.year}</span>
         </div>
       </div>
 
@@ -124,17 +124,31 @@ export default function PracticePanel({
 
         <div className="mt-5 space-y-3">
           {currentQuestion.options.map((option) => {
-            const checked = selected.includes(option.key);
+            const selectedByUser = selected.includes(option.key);
+            const isCorrectOption = currentQuestion.answer.includes(option.key);
+
+            let className = "border-slate-200 bg-white hover:border-teal-300 text-slate-900";
+
+            if (!submitted && selectedByUser) {
+              className = "border-teal-500 bg-teal-50 text-teal-900";
+            }
+
+            if (submitted) {
+              if (isCorrectOption) {
+                className = "border-emerald-400 bg-emerald-50 text-emerald-800";
+              } else if (selectedByUser) {
+                className = "border-rose-400 bg-rose-50 text-rose-800";
+              } else {
+                className = "border-slate-200 bg-slate-50 text-slate-500";
+              }
+            }
+
             return (
               <button
                 type="button"
                 key={option.key}
                 onClick={() => handleSelect(option.key)}
-                className={`w-full rounded-xl border px-4 py-3 text-left transition ${
-                  checked
-                    ? "border-teal-500 bg-teal-50 text-teal-900"
-                    : "border-slate-200 bg-white hover:border-teal-300"
-                } ${submitted ? "cursor-not-allowed opacity-90" : ""}`}
+                className={`w-full rounded-xl border px-4 py-3 text-left transition ${className} ${submitted ? "cursor-not-allowed" : ""}`}
               >
                 <span className="font-semibold">{option.key}.</span> {option.text}
               </button>
@@ -144,19 +158,10 @@ export default function PracticePanel({
       </article>
 
       <div className="mt-6 flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={submitted || selected.length === 0}
-          className="rounded-lg bg-teal-700 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-slate-300"
-        >
+        <button type="button" onClick={handleSubmit} disabled={submitted || selected.length === 0} className="btn-primary">
           提交答案
         </button>
-        <button
-          type="button"
-          onClick={handleNext}
-          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700"
-        >
+        <button type="button" onClick={handleNext} className="btn-secondary">
           下一题
         </button>
       </div>
@@ -174,6 +179,7 @@ export default function PracticePanel({
           <p className="mt-1 text-sm text-slate-700">
             标准答案：{getAnswerLabel(currentQuestion, currentQuestion.answer)}
           </p>
+          {!correct ? <p className="mt-1 text-sm font-semibold text-rose-700">已加入错题本</p> : null}
           <p className="mt-2 text-sm text-slate-800">解析：{currentQuestion.explanation}</p>
         </div>
       ) : null}
