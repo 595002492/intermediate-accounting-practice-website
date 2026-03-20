@@ -1,16 +1,16 @@
-import { CHAPTERS, SAMPLE_QUESTIONS } from "@/data/questions";
+import { CHAPTERS, QUESTION_BANK } from "@/data/questions";
 import { Question } from "@/lib/types";
 
 export function getAllQuestions() {
-  return SAMPLE_QUESTIONS;
+  return QUESTION_BANK;
 }
 
 export function getQuestionById(questionId: string) {
-  return SAMPLE_QUESTIONS.find((item) => item.id === questionId);
+  return QUESTION_BANK.find((item) => item.id === questionId);
 }
 
 export function getQuestionsByChapter(chapter: string) {
-  return SAMPLE_QUESTIONS.filter((item) => item.chapter === chapter);
+  return QUESTION_BANK.filter((item) => item.chapter === chapter);
 }
 
 export function getChapterStats() {

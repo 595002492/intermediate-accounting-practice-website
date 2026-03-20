@@ -1,6 +1,6 @@
 # Intermediate Accounting Practice Website (MVP)
 
-基于 Next.js + Tailwind CSS 的中级会计实务刷题 MVP。
+基于 Next.js + Tailwind CSS 的中级会计师考试练习网站。
 
 ## 功能
 
@@ -22,6 +22,7 @@ npm run dev
 
 ## 说明
 
-- 使用本地样本题库：`data/questions.ts`
+- 使用本地题库：`data/questions.ts`
+- 当前已接入：财务管理 2020 年客观题（单选/多选/判断）
 - 不含登录、支付、后台
-- 不接 PDF，不接复杂后端
+- 不接复杂后端

@@ -23,5 +23,5 @@ export default async function ChapterPracticePage({ params }: Props) {
     );
   }
 
-  return <PracticePanel questions={questions} title={`${chapter} - 章节练习`} />;
+  return <PracticePanel questions={questions} title={`${chapter} - 题组练习`} />;
 }

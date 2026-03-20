@@ -47,10 +47,13 @@ export default function StatsPanel({ allQuestions }: Props) {
           <div className="mt-4 space-y-3">
             {records.slice(0, 10).map((record) => {
               const question = allQuestions.find((q) => q.id === record.questionId);
+              const label = question
+                ? `${question.subject} ${question.year}${question.chapter ? ` · ${question.chapter}` : ""}`
+                : "未知题目";
               return (
                 <article key={record.id} className="rounded-lg border border-slate-100 bg-slate-50 p-3">
                   <p className="text-sm text-slate-700">
-                    {question?.chapter ?? "未知章节"} · {record.questionId} ·
+                    {label} · {record.questionId} ·
                     <span className={record.isCorrect ? "text-emerald-700" : "text-rose-700"}>
                       {record.isCorrect ? " 正确" : " 错误"}
                     </span>

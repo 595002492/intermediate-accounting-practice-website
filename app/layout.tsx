@@ -3,8 +3,8 @@ import "@/app/globals.css";
 import NavBar from "@/components/NavBar";
 
 export const metadata: Metadata = {
-  title: "中级会计实务刷题 MVP",
-  description: "支持章节练习、随机刷题、错题本和统计的中级会计实务练习网站"
+  title: "中级会计师考试练习平台",
+  description: "中级会计师三科练习平台（当前已接入财务管理2020年客观题真题）"
 };
 
 export default function RootLayout({

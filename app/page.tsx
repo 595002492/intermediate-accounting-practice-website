@@ -4,8 +4,8 @@ import { CHAPTERS } from "@/data/questions";
 
 const entries = [
   {
-    title: "章节练习",
-    desc: "按知识点系统刷题，逐章突破。",
+    title: "题组练习",
+    desc: "按科目与题组练习，当前已接入财务管理真题。",
     href: "/chapters"
   },
   {
@@ -31,13 +31,14 @@ export default function HomePage() {
   return (
     <div className="space-y-6">
       <section className="rounded-2xl border border-teal-100 bg-white p-6 shadow-sm md:p-8">
-        <h1 className="text-3xl font-black tracking-tight text-slate-900 md:text-4xl">中级会计实务刷题 MVP</h1>
+        <h1 className="text-3xl font-black tracking-tight text-slate-900 md:text-4xl">中级会计师考试练习平台</h1>
         <p className="mt-3 max-w-2xl text-slate-600">
-          面向中级会计实务备考，提供章节练习、随机刷题、错题复盘和基础统计。当前为第一版，基于本地样本题库即可直接演示。
+          站点定位已升级为中级会计师三科练习网站。当前第一批已接入财务管理 2020 年客观题（单选、多选、判断），支持题组练习、随机刷题、错题复盘和学习统计。
         </p>
         <div className="mt-5 flex flex-wrap gap-3 text-sm text-slate-600">
-          <span className="rounded-full bg-slate-100 px-3 py-1">章节数：{CHAPTERS.length}</span>
-          <span className="rounded-full bg-slate-100 px-3 py-1">样本题：{totalQuestions}</span>
+          <span className="rounded-full bg-slate-100 px-3 py-1">当前科目：财务管理</span>
+          <span className="rounded-full bg-slate-100 px-3 py-1">题组数：{CHAPTERS.length}</span>
+          <span className="rounded-full bg-slate-100 px-3 py-1">2020 客观题：{totalQuestions}</span>
         </div>
         <div className="mt-6">
           <Link

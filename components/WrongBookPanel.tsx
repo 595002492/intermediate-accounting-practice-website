@@ -82,7 +82,8 @@ export default function WrongBookPanel({ allQuestions }: Props) {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="space-y-1">
                     <p className="text-sm text-slate-500">
-                      {question.chapter} · {question.id} · 错误 {item.wrongCount} 次
+                      {question.subject} {question.year}
+                      {question.chapter ? ` · ${question.chapter}` : ""} · {question.id} · 错误 {item.wrongCount} 次
                     </p>
                     <p className="text-sm leading-6 text-slate-900">{question.stem}</p>
                     <p className="text-xs text-slate-500">

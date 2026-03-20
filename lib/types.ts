@@ -7,8 +7,9 @@ export type Option = {
 
 export type Question = {
   id: string;
+  subject: string;
   type: QuestionType;
-  chapter: string;
+  chapter: string | null;
   year: number;
   stem: string;
   options: Option[];
